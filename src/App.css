@@ -1,38 +1,102 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+body{
+  background-color: #4D426D;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.app-window {
+  display: flex;
+  height: 100vh;
+  background-color: #4D426D;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sidebar{
+  width: 35%;
+  max-width: 415px;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border-radius: 20px;
+  margin: 20px;
+}
+
+.header{
+  height:  80px;
+  display: flex;
+  border-radius: 20px;
+  background-color: #5c4f82;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.avatar{
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: white;
+}
+.icon-button{
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  display: flex;
+}
+
+.search{
+  height:  50px;
+  min-height: 50px;
+  display: flex;
+  border-radius: 20px;
+  background-color: #5c4f82;
+  align-items: center;
+  padding: 0 10px;
+  margin: 20px 0;
+}
+.search-input{
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  color: white;
+  margin-left: 5px;
+}
+.search-input::placeholder{
+  color: white;
+  opacity: 0.75;
+}
+.chat-list{
+  flex: 1;
+  background-color: #5c4f82;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  padding: 10px;
+  scrollbar-color: #81779D #5c4f82;
+  scrollbar-width: none;
+}
+.chat-list::-webkit-scrollbar{
+  width:6px;
+  height: 6px;
+}
+.chat-list::-webkit-scrollbar-thumb{
+  background-color: transparent;
+}
+.rounded-container{
+
+}
+.content{
+  width: 100%;
+  margin: 20px 0px;
+  margin-right: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #5c4f82;
 }
