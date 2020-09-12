@@ -12,8 +12,9 @@
     justify-content: flex-start;
     background-color: transparent;
     border-radius: 20px;
-    box-shadow: 0 0 0 5px#4D426D;
     padding: 0 20px;
+    z-index: 5;
+    outline: 6px solid #4D426D;
 }
 .chat-avatar{
     width: 50px;
@@ -53,7 +54,7 @@
     width: 50px;
     height: 50px;
     border-radius: 25px;
-    background-color: #4D426D;
+    background-color: #3CC6B7;
     cursor: pointer;
     margin: 0 10px;
     display: flex;
@@ -62,8 +63,8 @@
     transition: all 0.2s ease;
 }
 .chat-footer-right:hover{
-    transform: scale(1.2);
-    background-color: #81779D;
+    transform: scale(1.2) rotatez(-20deg);
+    background-color: #41d6c5;
 }
 .emoji-button{
     height: 30px;
@@ -78,7 +79,7 @@
 }
 .chat-emoji-container{
     overflow: hidden;
-    transition: all 0.35s ease;
+    transition: all 0.2s ease;
 }
 aside.emoji-picker-react{
     width: 100% !important;
@@ -90,4 +91,7 @@ aside.emoji-picker-react{
 .chat-body{
     overflow-y: auto;
     flex:1;
+    padding: 20px 30px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255, 0.1) transparent;
 }

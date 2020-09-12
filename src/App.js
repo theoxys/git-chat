@@ -1,28 +1,92 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import './App.css';
 import {IoIosChatboxes} from 'react-icons/io'
 import {BiSearchAlt} from 'react-icons/bi'
 import ChatListItem from './components/ChatListItem';
 import { ChatIntro } from './components/ChatIntro';
 import {ChatWindow} from './components/ChatWindow';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import {NewConversation} from './components/NewConversation';
+import {LoginScreen} from './components/LoginScreen';
+import {firebaseApp, Api} from './services/api'
+import {BiLogOut} from 'react-icons/bi'
+import ReactTooltip from 'react-tooltip'
+import ReactLoading from 'react-loading'
 
 function App() {
-  const [chatList, setChatList] = useState([
-    {chatId: 1, title: 'MatheusF', avatar: 'https://www.w3schools.com/howto/img_avatar.png'},
-    {chatId: 2, title: 'Matheus', avatar: 'https://www.w3schools.com/howto/img_avatar.png'},
-    {chatId: 3, title: 'Matheus', avatar: 'https://www.w3schools.com/howto/img_avatar.png'},
-    {chatId: 4, title: 'Matheus', avatar: 'https://www.w3schools.com/howto/img_avatar.png'},
-  ]);
+
+  const Alert = withReactContent(Swal)
+  const [chatList, setChatList] = useState([]);
   const [activeChat, setActiveChat] = useState({});
+  const [user, setUser] = useState(null);
+
+  const handleNewChat = () => {
+    Alert.fire({
+      title: 'Start a new conversation',
+      html: <NewConversation user={user}/>,
+      showCloseButton: true,
+      focusCloseButton: false,
+      showConfirmButton: false
+    })
+  }
+
+  const handleLogOut = () => {
+      Api.logout();
+  }
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(()=>{
+    firebaseApp.auth().onAuthStateChanged(async(resp)=>{
+      if(resp){
+        let newUser = {
+          id: resp.uid,
+          name: resp.displayName,
+          avatar: resp.photoURL
+        }
+        await Api.addUser(newUser);
+        setUser(newUser);
+      }else{
+        setUser(null);
+      }
+
+      setLoading(false);
+    })
+  },[])
+
+  useEffect(()=>{
+    if(user !== null){
+      let unsub = Api.onChatList(user.id, setChatList);
+      return unsub
+    }
+  }, [user]);
+
+  if(loading){
+    return(
+      <div className="app-window" style={{justifyContent:'center', alignItems:'center'}}>
+        <ReactLoading type={"spin"} color={'#dd7c4b'}/>
+      </div>
+    )
+  }
+
+  if(user === null){
+    return(
+      <LoginScreen />
+    )
+  }
 
   return (
   <div className="app-window">
     <div className="sidebar">
       <div className="header">
-        <div className="avatar"></div>
-        <div style={{fontWeight:700}}>Nome Do Usuário</div>
+        <img className="avatar" src={user.avatar}></img>
+        <div style={{fontWeight:700}}>{user.name}</div>
         <button className="icon-button">
-          <IoIosChatboxes color="white" style={{width:25, height:25}}/>
+          <IoIosChatboxes className="header-icon" onClick={handleNewChat} data-tip="Start new conversation"/>
+          <ReactTooltip/>
+          <BiLogOut className="header-icon" onClick={handleLogOut} data-tip="Logout"/>
+          <ReactTooltip/>
         </button>
       </div>
       <div className="search">
@@ -41,7 +105,10 @@ function App() {
     </div>
     <div className="content">
       {activeChat.chatId !== undefined && 
-        <ChatWindow/>
+        <ChatWindow
+        user={user}
+        data={activeChat}
+      />
       }
       {activeChat.chatId === undefined && 
         <ChatIntro/>

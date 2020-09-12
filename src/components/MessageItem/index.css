@@ -1,0 +1,32 @@
+.msg-line{
+    margin-bottom: 10px;
+    display: flex;
+}
+.msg-item{
+ display: flex;
+ flex-direction: column;
+ padding: 5px;
+ max-width: 80%;
+}
+.user-msg{
+    justify-content: flex-end;
+    border-radius: 10px 10px 0px 10px;
+    background-color:#dd7c4b;
+}
+.friend-msg{
+    border-radius: 0px 10px 10px 10px;
+    justify-content: flex-start;
+    background-color: #4D426D;
+}
+.msg-text{
+    font-size: 14px;
+    margin: 5px 40px 5px 5px;
+}
+.msg-date{
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-right: 5px;
+    text-align: right;
+    height: 15px;
+    margin-top: -15px;
+}
