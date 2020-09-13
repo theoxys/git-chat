@@ -67,10 +67,21 @@ body{
   color: white;
   margin-left: 5px;
 }
+.search-input::-webkit-search-cancel-button{
+  color: white !important;
+  cursor: pointer;
+  -webkit-appearance: none;
+  height: 10px;
+  width: 10px;
+  background-image: url("https://flaticons.net/icon.php?slug_category=mobile-application&slug_icon=close");
+  background-size: cover;
+}
+
 .search-input::placeholder{
   color: white;
   opacity: 0.75;
 }
+
 .chat-list{
   flex: 1;
   background-color: #5c4f82;

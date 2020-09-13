@@ -32,21 +32,22 @@ export const Api = {
 
     getContactList: async(searched) => {
         let list = [];
-
-        let results = await db.collection('users').get();
-        results.forEach(result => {
-            let data = result.data();
-
-            if(data.name.indexOf(searched) !== -1) {
-                if(firebaseApp.auth().currentUser.uid !== result.id) {
-                    list.push({
-                        id: result.id,
-                        name: data.name,
-                        avatar: data.avatar
-                    });
+        if(searched !== '' && searched !== ' '){
+            let results = await db.collection('users').get();
+            results.forEach(result => {
+                let data = result.data();
+    
+                if(data.name.indexOf(searched) !== -1) {
+                    if(firebaseApp.auth().currentUser.uid !== result.id) {
+                        list.push({
+                            id: result.id,
+                            name: data.name,
+                            avatar: data.avatar
+                        });
+                    }
                 }
-            }
-        });
+            });
+        }
 
         return list;
     },

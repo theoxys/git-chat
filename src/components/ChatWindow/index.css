@@ -14,7 +14,7 @@
     border-radius: 20px;
     padding: 0 20px;
     z-index: 5;
-    outline: 6px solid #4D426D;
+    outline: 1px solid rgb(69, 59, 100);
 }
 .chat-avatar{
     width: 50px;
@@ -94,4 +94,13 @@ aside.emoji-picker-react{
     padding: 20px 30px;
     scrollbar-width: thin;
     scrollbar-color: rgba(255,255,255, 0.1) transparent;
+}
+.chat-body::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+.chat-body::-webkit-scrollbar-thumb {
+    background: #3a3253 ;
+    border: 0px none #564b79 ;
+    border-radius: 50px;
 }

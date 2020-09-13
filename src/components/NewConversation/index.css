@@ -30,3 +30,17 @@
     margin: 0;
     padding: 10px 0;
 }
+.newchat-userlist::-webkit-scrollbar{
+    width: 6px;
+    height: 6px;
+}
+.newchat-userlist::-webkit-scrollbar-thumb{
+    background: #3a3253 ;
+    border: 0px none #564b79 ;
+    border-radius: 50px;
+}
+.newchat-name{
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}

@@ -34,7 +34,7 @@ export const ChatWindow = ({user, data}) => {
 
     const handleSendMessage = (e) => {
         e.preventDefault();
-        if(inputRef.current.value !== ''){
+        if(inputRef.current.value !== '' && inputRef.current.value !== ' '){
             Api.sendMessage(data, user.id, 'text', inputRef.current.value, users);
             inputRef.current.value = '';
             setEmojiOpen(false);
